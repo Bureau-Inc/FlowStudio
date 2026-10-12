@@ -1,0 +1,87 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.3 effective-5.10 (swiftlang-6.3.0.123.5 clang-2100.0.123.102)
+// swift-module-flags: -target arm64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -O -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name FlowStudioSDK
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3
+import AVFoundation
+import Foundation
+import Swift
+import UIKit
+import WebKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_hasMissingDesignatedInitializers @_Concurrency.MainActor final public class FlowStudio {
+  @_Concurrency.MainActor convenience public init(configuration: FlowStudioSDK.FlowStudioConfiguration)
+  @_Concurrency.MainActor final public func start(executionId: Swift.String, presentingController: UIKit.UIViewController, language: FlowStudioSDK.FlowStudioLanguage = .english, animated: Swift.Bool = true) async -> FlowStudioSDK.FlowStudioCallback
+  @_Concurrency.MainActor final public func start(executionId: Swift.String, presentingController: UIKit.UIViewController, language: FlowStudioSDK.FlowStudioLanguage = .english, animated: Swift.Bool = true, completion: @escaping (FlowStudioSDK.FlowStudioCallback) -> Swift.Void)
+  @objc deinit
+}
+public enum FlowStudioEnvironment : Swift.Sendable {
+  case production
+  case staging
+  public static func == (a: FlowStudioSDK.FlowStudioEnvironment, b: FlowStudioSDK.FlowStudioEnvironment) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct FlowStudioConfiguration : Swift.Sendable {
+  public let credentialId: Swift.String
+  public let environment: FlowStudioSDK.FlowStudioEnvironment
+  public init(credentialId: Swift.String, environment: FlowStudioSDK.FlowStudioEnvironment)
+}
+public enum FlowStudioLanguage : Swift.String, Swift.Sendable {
+  case english
+  case bahasa
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum FlowStudioExecutionStatus : Swift.String, Swift.Sendable {
+  case processing
+  case awaiting
+  case completed
+  case timeout
+  case error
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum FlowStudioError : Swift.Sendable {
+  case flowAlreadyRunning
+  case presentationFailed
+  public static func == (a: FlowStudioSDK.FlowStudioError, b: FlowStudioSDK.FlowStudioError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct FlowStudioResult : Swift.Sendable, Swift.Equatable {
+  public let executionId: Swift.String
+  public let merchantId: Swift.String?
+  public let requestId: Swift.String?
+  public let executionStatus: FlowStudioSDK.FlowStudioExecutionStatus?
+  public init(executionId: Swift.String, merchantId: Swift.String?, requestId: Swift.String?, executionStatus: FlowStudioSDK.FlowStudioExecutionStatus?)
+  public static func == (a: FlowStudioSDK.FlowStudioResult, b: FlowStudioSDK.FlowStudioResult) -> Swift.Bool
+}
+public enum FlowStudioCallback : Swift.Sendable, Swift.Equatable {
+  case result(FlowStudioSDK.FlowStudioResult)
+  case exit
+  case error(FlowStudioSDK.FlowStudioError)
+  public static func == (a: FlowStudioSDK.FlowStudioCallback, b: FlowStudioSDK.FlowStudioCallback) -> Swift.Bool
+}
+extension FlowStudioSDK.FlowStudio : Swift.Sendable {}
+extension FlowStudioSDK.FlowStudioEnvironment : Swift.Equatable {}
+extension FlowStudioSDK.FlowStudioEnvironment : Swift.Hashable {}
+extension FlowStudioSDK.FlowStudioLanguage : Swift.Equatable {}
+extension FlowStudioSDK.FlowStudioLanguage : Swift.Hashable {}
+extension FlowStudioSDK.FlowStudioLanguage : Swift.RawRepresentable {}
+extension FlowStudioSDK.FlowStudioExecutionStatus : Swift.Equatable {}
+extension FlowStudioSDK.FlowStudioExecutionStatus : Swift.Hashable {}
+extension FlowStudioSDK.FlowStudioExecutionStatus : Swift.RawRepresentable {}
+extension FlowStudioSDK.FlowStudioError : Swift.Equatable {}
+extension FlowStudioSDK.FlowStudioError : Swift.Hashable {}
